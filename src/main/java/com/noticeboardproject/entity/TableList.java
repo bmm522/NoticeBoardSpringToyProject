@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -21,13 +20,16 @@ public class TableList {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	private Integer hit;
+	
+	private Integer pub;
+	
+	private Date regdate;
+	
 	private String title;
 	
 	private String writer_id;
 	
-	private Date regdate;
+
 	
-	private Integer hit;
-		
-	private Integer pub;
 }

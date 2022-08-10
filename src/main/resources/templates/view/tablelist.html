@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   	<title>Table 01</title>
     <meta charset="utf-8">
@@ -43,14 +43,13 @@
 						  </thead>
 						  <tbody>
 						    
-						    <tr th:each="t:${tableList}">
-						      <th scope="row"></th>
-						      <td th:text="${t.id}"></td>
-						      <td th:text="${t.title}"></td>
+						    <tr th:each="board : ${tableList}">
+						      <th scope="row" th:text="${board.id}"></th>
+						      <td th:text="${board.title}"></td>
 						     
-						      <td th:text="${t.writer_id}"></td>
-						      <td th:text="${t.regdate}"></td>
-						      <td th:text="${t.hit}"></td>
+						      <td th:text="${board.writer_id}"></td>
+						      <td th:text="${board.regdate}"></td>
+						      <td th:text="${board.hit}"></td>
 						    </tr>
 						    
 						  </tbody>

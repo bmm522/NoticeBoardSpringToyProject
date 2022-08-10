@@ -29,7 +29,7 @@ public class GetTableController {
 //		model.addAttribute("startPage", startPage);
 //		model.addAttribute("endPage", endPage);
 		
-		return "table";
+		return "view/tablelist";
 	}
 	
 	
