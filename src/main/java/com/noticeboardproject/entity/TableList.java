@@ -5,14 +5,14 @@ import java.sql.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
 
-
-@Entity(name ="TALBELIST")
+//@Table(name="TABLELIST")
+@Entity
 @Getter
 @Setter
 public class TableList {
@@ -25,13 +25,9 @@ public class TableList {
 	
 	private String writer_id;
 	
-	private String content;
-	
 	private Date regdate;
 	
 	private Integer hit;
-	
-	private String files;
-	
+		
 	private Integer pub;
 }

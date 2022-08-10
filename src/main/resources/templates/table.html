@@ -43,23 +43,21 @@
 						  </thead>
 						  <tbody>
 						    
-						    <tr th:each="table:${table}">
-						      <th scope="row" th:text="${table.id"></th>
-						      <td><a th:text="${table.title}" href="view?id=${t.id}">${t.title}</a></td>
+						    <tr th:each="t:${tableList}">
+						      <th scope="row"></th>
+						      <td th:text="${t.id}"></td>
+						      <td th:text="${t.title}"></td>
 						     
-						      <td th:text="${table.writer_id}">${t.writer_id}</td>
-						      <td th:text="${table.regdate}">${t.regdate}</td>
-						      <td th:text="${board.hit}">${t.hit}</td>
+						      <td th:text="${t.writer_id}"></td>
+						      <td th:text="${t.regdate}"></td>
+						      <td th:text="${t.hit}"></td>
 						    </tr>
 						    
 						  </tbody>
 						</table>
 						
 					</div>
-					
-					<td>
-					<a></a>
-					</td>
+				
 					
 					
 					<a href="writer.jsp" class="btn btn-primary pull-right">글쓰기</a>

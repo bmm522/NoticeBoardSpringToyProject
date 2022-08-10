@@ -1,8 +1,8 @@
 package com.noticeboardproject.service.gettable;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.noticeboardproject.TableListRepository;
@@ -15,8 +15,8 @@ public class GetTableService {
 	private TableListRepository tableListRepository;
 	
 	// 게시글 리스트 처리
-	public Page<TableList> getTableList(Pageable pageable){
+	public List<TableList> getTableList(){
 		
-		return tableListRepository.findAll(pageable);
+		return tableListRepository.findAll();
 	}
 }
