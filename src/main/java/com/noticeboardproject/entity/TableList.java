@@ -23,7 +23,8 @@ public class TableList {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	private Integer hit;
+	@Column(name="HIT")
+	private Integer hit = 0;	
 	
 	private Integer pub;
 	
@@ -33,10 +34,13 @@ public class TableList {
 	
 	private String title;
 	
+	
 	private String writer_id;
 	
+	
 	private String content;
-	 
+	
+	
 	private String files;
 	
 
