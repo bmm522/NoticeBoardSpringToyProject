@@ -1,11 +1,14 @@
 package com.noticeboardproject.entity;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -24,11 +27,17 @@ public class TableList {
 	
 	private Integer pub;
 	
-	private Date regdate;
+	@CreationTimestamp
+	@Column(name="REGDATE")
+	private LocalDate regdate;
 	
 	private String title;
 	
 	private String writer_id;
+	
+	private String content;
+	 
+	private String files;
 	
 
 	
