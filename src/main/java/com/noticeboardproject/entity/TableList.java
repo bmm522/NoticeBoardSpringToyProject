@@ -26,7 +26,8 @@ public class TableList {
 	@Column(name="HIT")
 	private Integer hit = 0;	
 	
-	private Integer pub;
+	@Column(name="PUB")
+	private Integer pub = 1;
 	
 	@CreationTimestamp
 	@Column(name="REGDATE")
