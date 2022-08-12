@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.noticeboardproject.entity.BoardMember;
 
 @Repository
-public interface LoginRepository extends JpaRepository<BoardMember, String>{
+public interface BoardMemberRepository extends JpaRepository<BoardMember, String>{
 
 }

@@ -6,18 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.noticeboardproject.entity.BoardMember;
-import com.noticeboardproject.repository.LoginRepository;
+import com.noticeboardproject.repository.BoardMemberRepository;
 import com.noticeboardproject.token.Token;
 
 @Service
 public class LoginService {
 	
 	@Autowired
-	private LoginRepository loginRepository;
+	private BoardMemberRepository boardMemberRepository;
 	
 	public Token loginCheck(BoardMember boardMember) {
 		
-		Optional<BoardMember> loginInfo = loginRepository.findById(boardMember.getUserId());
+		Optional<BoardMember> loginInfo = boardMemberRepository.findById(boardMember.getUserId());
 		
 		if(loginInfo.isEmpty()) {
 			return Token.LOGINFAIL;
