@@ -1,5 +1,10 @@
 package com.noticeboardproject.controller.login;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,14 +28,34 @@ public class LoginController {
 	
 	
 	@PostMapping("/noticeboard/loginaction")
-	public String noticeBoardLoginAction(BoardMember login) {
+	public void noticeBoardLoginAction(BoardMember login, HttpServletResponse response) 
+			throws IOException {
 		switch(loginService.loginCheck(login)) {
 		case LOGINSUCCESS:
-			return "redirect:/noticeboard/loginsuccess";
+			successLogin(response.getWriter());
+			break;
 		case LOGINFAIL:
-			return "redirect:/noticeboard/loginfail";
+			failLogin(response.getWriter());
 		}
-		return "redirect:/noticeboard/loginfail";
 		
 	}
+
+
+	private void successLogin(PrintWriter out) {
+		out.println("<script>");
+		out.println("alert('로그인 성공')");
+		out.println("location.href='/noticeboard/list'");
+		out.println("</script>");
+		
+	}
+
+
+	private void failLogin(PrintWriter out) {
+		out.println("<script>");
+		out.println("alert('로그인 실패')");
+		out.println("location.href='/noticeboard/login'");
+		out.println("</script>");
+		
+	}
+
 }
