@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -16,20 +18,42 @@ import lombok.Setter;
 @Setter
 public class BoardMember {
 	
-	@Id
-	private String userId;
 	
-	private String userPwd;
-	
-	private String userName;
-	
-	private Integer phoneNum;
-	
+	@Column(name="EMAIL")
 	private String Email;
-	
 	@CreationTimestamp
 	@Column(name="REGDATE")
-	private LocalDate regdate;
+	private LocalDate regdate = LocalDate.now();
+	@Id
+	@GeneratedValue
+	private Long id;
+	@Column(name="PHONENUM")
+	private Integer phoneNum;
+	@Column(name="USERID")
+	private String userId;
+	@Column(name="USERNAME")
+	private String userName;
+	@Column(name="USERPWD")
+	private String userPwd;
+	
+	
+	
+	
+	public BoardMember() {}
+	
+	
+	
+
+	public BoardMember(String userId, String userPwd, String userName, Integer phoneNum, String email) {
+		
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.userName = userName;
+		this.phoneNum = phoneNum;
+		this.Email = email;
+	}
+	
+	
 	
 }
 

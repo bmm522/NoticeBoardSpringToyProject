@@ -1,11 +1,19 @@
 package com.noticeboardproject.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.noticeboardproject.entity.BoardMember;
 
 @Repository
-public interface BoardMemberRepository extends JpaRepository<BoardMember, String>{
+public interface BoardMemberRepository extends JpaRepository<BoardMember, Long>{
+
+	BoardMember findByuserId(String userId);
+
+	boolean existsByuserID(String userId);
+
+
 
 }

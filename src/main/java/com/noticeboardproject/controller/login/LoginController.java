@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.noticeboardproject.entity.BoardMember;
@@ -28,9 +29,9 @@ public class LoginController {
 	
 	
 	@PostMapping("/noticeboard/loginaction")
-	public void noticeBoardLoginAction(BoardMember login, HttpServletResponse response) 
+	public void noticeBoardLoginAction(@ModelAttribute BoardMember boardmember, HttpServletResponse response) 
 			throws IOException {
-		switch(loginService.loginCheck(login)) {
+		switch(loginService.loginCheck(boardmember)) {
 		case LOGINSUCCESS:
 			successLogin(response.getWriter());
 			break;

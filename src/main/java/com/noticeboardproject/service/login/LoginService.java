@@ -1,6 +1,6 @@
 package com.noticeboardproject.service.login;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,13 +17,13 @@ public class LoginService {
 	
 	public Token loginCheck(BoardMember boardMember) {
 		
-		Optional<BoardMember> loginInfo = boardMemberRepository.findById(boardMember.getUserId());
+		BoardMember loginInfo = boardMemberRepository.findByuserId(boardMember.getUserId());
 		
-		if(loginInfo.isEmpty()) {
+		if(loginInfo==null) {
 			return Token.LOGINFAIL;
 		}
 		
-		if(!loginInfo.get().getUserPwd().equals(boardMember.getUserPwd())) {
+		if(!loginInfo.getUserPwd().equals(boardMember.getUserPwd())) {
 			return Token.LOGINFAIL;
 		}
 		

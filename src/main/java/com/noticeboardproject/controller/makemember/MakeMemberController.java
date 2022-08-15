@@ -29,7 +29,11 @@ public class MakeMemberController {
 	public void noticeBoardMakeMemberAction(BoardMember boardMember, HttpServletRequest request, HttpServletResponse response) 
 			throws IOException {
 		String userId = request.getParameter("user_ID");
-		switch(makeMemberService.makeMemberCheck(boardMember,userId)) {
+		String userPwd = request.getParameter("user_PW");
+		String userName = request.getParameter("user_Name");
+		String userPhoneNum = request.getParameter("user_Phonenum");
+		String userEmail = request.getParameter("user_Email");
+		switch(makeMemberService.makeMemberCheck(boardMember,userId,userPwd,userName,userPhoneNum,userEmail)) {
 		case MAKEMEMBERERROR:
 			makeMemberError(response.getWriter());
 			break;

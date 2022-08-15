@@ -13,10 +13,9 @@ public class MakeMemberService {
 	@Autowired
 	private BoardMemberRepository boardMemberRepository;
 	
-	public Token makeMemberCheck(BoardMember boardMember,String userId) {
-		if(boardMember.getEmail().equals("null") || boardMember.getPhoneNum().equals("null") ||
-				boardMember.getRegdate().equals("null") || boardMember.getUserId().equals("null")
-				|| boardMember.getUserName().equals("null") || boardMember.getUserPwd().equals("null")) {
+	public Token makeMemberCheck(BoardMember boardMember,String userId,String userPwd, String userName, String userPhoneNum, String userEmail) {
+		if(userId.equals("null")||userPwd.equals("null")||userName.equals("null")||userEmail.equals("null")||
+				userPhoneNum.equals("null")) {
 			
 			return Token.MAKEMEMBERERROR;
 			
@@ -26,7 +25,7 @@ public class MakeMemberService {
 	}
 
 	private Token makeMemberAction(BoardMember boardMember, String userId) {
-		if(boardMemberRepository.existsById(userId)) {
+		if(boardMemberRepository.existsByuserID(userId)) {
 			return Token.MAKEMEMBERFAIL;
 		} else {
 			boardMemberRepository.save(boardMember);
