@@ -1,4 +1,4 @@
-package com.noticeboardproject.controller.gettable;
+package com.noticeboardproject.controller.gettablelist;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.noticeboardproject.service.gettable.GetTableService;
 
 @Controller
-public class GetTableController {
+public class GetTableListController {
 	
 	@Autowired
 	private GetTableService getTableService;
