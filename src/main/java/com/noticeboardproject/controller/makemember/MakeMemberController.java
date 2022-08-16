@@ -26,13 +26,16 @@ public class MakeMemberController {
 	}
 	
 	@PostMapping("/noticeboard/makememberaction")
-	public void noticeBoardMakeMemberAction(BoardMember boardMember, HttpServletRequest request, HttpServletResponse response) 
+	public void noticeBoardMakeMemberAction(HttpServletRequest request, HttpServletResponse response) 
 			throws IOException {
+		
 		String userId = request.getParameter("user_ID");
 		String userPwd = request.getParameter("user_PW");
 		String userName = request.getParameter("user_Name");
 		String userPhoneNum = request.getParameter("user_Phonenum");
 		String userEmail = request.getParameter("user_Email");
+		BoardMember boardMember = new BoardMember(userId, userPwd, userName, 
+				Integer.parseInt(userPhoneNum), userEmail);
 		switch(makeMemberService.makeMemberCheck(boardMember,userId,userPwd,userName,userPhoneNum,userEmail)) {
 		case MAKEMEMBERERROR:
 			makeMemberError(response.getWriter());
