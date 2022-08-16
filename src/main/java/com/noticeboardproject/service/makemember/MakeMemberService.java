@@ -25,7 +25,7 @@ public class MakeMemberService {
 	}
 
 	private Token makeMemberAction(BoardMember boardMember, String userId) {
-		if(boardMemberRepository.existsByuserID(userId)) {
+		if(boardMemberRepository.existsByuserId(userId)) {
 			return Token.MAKEMEMBERFAIL;
 		} else {
 			boardMemberRepository.save(boardMember);

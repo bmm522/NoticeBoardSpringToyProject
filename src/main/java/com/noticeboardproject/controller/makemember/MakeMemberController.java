@@ -49,7 +49,7 @@ public class MakeMemberController {
 
 	private void makeMemberFail(PrintWriter out) {
 		out.println("<script>");
-		out.println("alert('입력을 안한 곳이 있습니다')");
+		out.println("alert('동일한 아이디가 존재합니다')");
 		out.println("location.href='/noticeboard/makemember'");
 		out.println("</script>");
 		
@@ -66,7 +66,7 @@ public class MakeMemberController {
 
 	private void makeMemberError(PrintWriter out) {
 		out.println("<script>");
-		out.println("alert('동일한 아이디가 있습니다.')");
+		out.println("alert('입력을 안한 곳이 있습니다.')");
 		out.println("location.href='/noticeboard/makemember'");
 		out.println("</script>");
 		
