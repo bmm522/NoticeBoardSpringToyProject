@@ -14,7 +14,10 @@ public class GetTableViewController {
 	private GetTableService getTableService;
 	
 	@GetMapping("/noticeboard/view")
-	public String getView(Model model) {
+	public String moveView(Model model, Integer id) {
+		model.addAttribute("view", getTableService.getTableView(id));
 		return "view/tableview";
 	}
+	
+	
 }

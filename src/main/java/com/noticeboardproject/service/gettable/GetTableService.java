@@ -19,5 +19,10 @@ public class GetTableService {
 		
 		return tableListRepository.findAll();
 	}
+
+	public TableList getTableView(Integer id) {
+		
+		return tableListRepository.findById(id).get();
+	}
 }
 
