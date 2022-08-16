@@ -29,7 +29,8 @@ public class WriteController extends HttpServlet{
 	}
 	
 	@PostMapping("/noticeboard/writeaction")
-	public String noticeBoardWriteAction(TableList tableList) throws Exception {
+	public String noticeBoardWriteAction(TableList tableList, HttpServletRequest request) throws Exception {
+		tableList.setWriter_id((String)request.getSession().getAttribute("userId"));
 		writeService.write(tableList);
 		return "redirect:/noticeboard/writemove";
 	}
