@@ -19,7 +19,7 @@ public class BoardMember {
 	
 	
 	@Column(name="EMAIL")
-	private String Email;
+	private String email;
 	@CreationTimestamp
 	@Column(name="REGDATE")
 	private LocalDate regdate = LocalDate.now();
@@ -49,7 +49,7 @@ public class BoardMember {
 		this.userPwd = userPwd;
 		this.userName = userName;
 		this.phoneNum = phoneNum;
-		this.Email = email;
+		this.email = email;
 	}
 	
 	
