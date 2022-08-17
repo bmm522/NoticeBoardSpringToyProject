@@ -1,6 +1,9 @@
 package com.noticeboardproject.controller.gettablelist;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,18 +17,9 @@ public class GetTableListController {
 	private TableService tableService;
 	
 	@GetMapping("/noticeboard/list")
-	public String getTable(Model model) {
-//			@PageableDefault(page = 0, size = 10, sort ="id", direction = Sort.Direction.DESC)Pageable pageable) {
-		
-//		int nowPage = table.getPageable().getPageNumber();
-//		int startPage = Math.max(nowPage - 4, 1);
-//		int endPage = Math.min(nowPage + 5, table.getTotalPages());
-		
-		model.addAttribute("tableList", tableService.getTableList());
-//		model.addAttribute("nowPage", nowPage);
-//		model.addAttribute("startPage", startPage);
-//		model.addAttribute("endPage", endPage);
-		
+	public String getTable(Model model,
+			@PageableDefault(sort = "id", direction = Sort.Direction.DESC)Pageable pageable) {
+		model.addAttribute("tableList", tableService.getTableList(pageable));
 		return "view/tablelist";
 	}
 	
