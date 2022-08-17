@@ -10,10 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.noticeboardproject.entity.BoardMember;
 import com.noticeboardproject.service.makemember.MakeMemberService;
+import com.noticeboardproject.token.Token;
 
 @Controller
 public class MakeMemberController {
@@ -27,7 +27,7 @@ public class MakeMemberController {
 	}
 	
 	@PostMapping("/noticeboard/makememberaction")
-	public void noticeBoardMakeMemberAction(BoardMember boardMember,HttpServletRequest request, HttpServletResponse response) 
+	public void makeMemberAction(BoardMember boardMember,HttpServletRequest request, HttpServletResponse response) 
 			throws IOException {
 		
 		String userId = request.getParameter("userId");
@@ -35,9 +35,13 @@ public class MakeMemberController {
 		String userName = request.getParameter("userName");
 		String userPhoneNum = request.getParameter("phoneNum");
 		String userEmail = request.getParameter("email");
-//		BoardMember boardMember = new BoardMember(userId, userPwd, userName, 
-//				Integer.parseInt(userPhoneNum), userEmail);
-		switch(makeMemberService.makeMemberCheck(boardMember,userId,userPwd,userName,userPhoneNum,userEmail)) {
+		checkMakeMember(makeMemberService.makeMemberCheck(boardMember,
+				userId,userPwd,userName,userPhoneNum,userEmail), response);
+	}
+	
+
+	private void checkMakeMember(Token token, HttpServletResponse response) throws IOException {	
+		switch(token) {
 		case MAKEMEMBERERROR:
 			makeMemberError(response.getWriter());
 			break;
@@ -48,8 +52,9 @@ public class MakeMemberController {
 			makeMemberFail(response.getWriter());
 			break;
 		}
-		
 	}
+		
+	
 
 	private void makeMemberFail(PrintWriter out) {
 		out.println("<script>");
