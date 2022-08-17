@@ -29,5 +29,10 @@ public class TableService {
 	public void write(TableList tableList) throws Exception{
 		tableListRepository.save(tableList);
 	}
+
+	public void delete(Integer id) {
+		tableListRepository.deleteById(id);
+		
+	}
 }
 

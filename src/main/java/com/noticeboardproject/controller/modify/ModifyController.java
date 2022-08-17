@@ -18,21 +18,21 @@ import com.noticeboardproject.service.table.TableService;
 public class ModifyController {
 	
 	@Autowired
-	private TableService TableService;
+	private TableService tableService;
 	
 	//기존의 데이터 출력
 	@GetMapping("/noticeboard/modify/{id}")
 	public String viewModify(@PathVariable("id")Integer id, Model model) {
-		model.addAttribute("preTable", TableService.getTableView(id));
+		model.addAttribute("preTable", tableService.getTableView(id));
 		return "view/modifypage";
 	}
 	
 	@PostMapping("/noticeboard/modifyaction/{id}")
 	public void viewModifyAction(@PathVariable("id")Integer id, TableList tableList, HttpServletResponse response) throws Exception {
-		TableList tableListTemp = TableService.getTableView(id);
+		TableList tableListTemp = tableService.getTableView(id);
 		tableListTemp.setTitle(tableList.getTitle());
 		tableListTemp.setContent(tableList.getContent());
-		TableService.write(tableListTemp);
+		tableService.write(tableListTemp);
 		movePage(response.getWriter());
 	}
 
