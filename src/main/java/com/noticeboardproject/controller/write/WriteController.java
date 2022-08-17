@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.noticeboardproject.entity.TableList;
-import com.noticeboardproject.service.write.WriteService;
+import com.noticeboardproject.service.table.TableService;
 
 @Controller
 public class WriteController extends HttpServlet{
 	
 	@Autowired
-	private WriteService writeService;
+	private TableService tableService;
 	
 	
 	@GetMapping("/noticeboard/write")
@@ -31,7 +31,7 @@ public class WriteController extends HttpServlet{
 	@PostMapping("/noticeboard/writeaction")
 	public String noticeBoardWriteAction(TableList tableList, HttpServletRequest request) throws Exception {
 		tableList.setWriter_id((String)request.getSession().getAttribute("userId"));
-		writeService.write(tableList);
+		tableService.write(tableList);
 		return "redirect:/noticeboard/writemove";
 	}
 	

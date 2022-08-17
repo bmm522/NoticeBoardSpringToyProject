@@ -5,13 +5,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.noticeboardproject.service.gettable.GetTableService;
+import com.noticeboardproject.service.table.TableService;
 
 @Controller
 public class GetTableListController {
 	
 	@Autowired
-	private GetTableService getTableService;
+	private TableService tableService;
 	
 	@GetMapping("/noticeboard/list")
 	public String getTable(Model model) {
@@ -21,7 +21,7 @@ public class GetTableListController {
 //		int startPage = Math.max(nowPage - 4, 1);
 //		int endPage = Math.min(nowPage + 5, table.getTotalPages());
 		
-		model.addAttribute("tableList", getTableService.getTableList());
+		model.addAttribute("tableList", tableService.getTableList());
 //		model.addAttribute("nowPage", nowPage);
 //		model.addAttribute("startPage", startPage);
 //		model.addAttribute("endPage", endPage);

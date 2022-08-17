@@ -9,10 +9,7 @@ import com.noticeboardproject.entity.TableList;
 @Service
 public class WriteService {
 	
-	@Autowired
-	private TableListRepository tableListRepository;
+
 	
-	public void write(TableList tableList) throws Exception{
-		tableListRepository.save(tableList);
-	}
+	
 }

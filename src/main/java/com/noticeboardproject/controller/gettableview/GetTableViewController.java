@@ -7,17 +7,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.noticeboardproject.service.gettable.GetTableService;
+import com.noticeboardproject.service.table.TableService;
 
 @Controller
 public class GetTableViewController {
 	
 	@Autowired
-	private GetTableService getTableService;
+	private TableService tableService;
 	
 	@GetMapping("/noticeboard/view")
 	public String moveView(Model model, Integer id, HttpServletRequest request) {
-		model.addAttribute("view", getTableService.getTableView(id));
+		model.addAttribute("view", tableService.getTableView(id));
 		model.addAttribute("sessionUserId",request.getSession().getAttribute("userId"));
 		return "view/tableview";
 	}
