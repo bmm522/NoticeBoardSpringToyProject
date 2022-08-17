@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -27,7 +28,7 @@ public class MakeMemberController {
 	}
 	
 	@PostMapping("/noticeboard/makememberaction")
-	public void makeMemberAction(BoardMember boardMember,HttpServletRequest request, HttpServletResponse response) 
+	public void makeMemberAction(BoardMember boardMember,HttpServletRequest request, HttpServletResponse response,Model model) 
 			throws IOException {
 		
 		String userId = request.getParameter("userId");
@@ -36,17 +37,17 @@ public class MakeMemberController {
 		String userPhoneNum = request.getParameter("phoneNum");
 		String userEmail = request.getParameter("email");
 		checkMakeMember(makeMemberService.makeMemberCheck(boardMember,
-				userId,userPwd,userName,userPhoneNum,userEmail), response);
+				userId,userPwd,userName,userPhoneNum,userEmail), response, model, userId);
 	}
 	
 
-	private void checkMakeMember(Token token, HttpServletResponse response) throws IOException {	
+	private void checkMakeMember(Token token, HttpServletResponse response, Model model, String userId) throws IOException {	
 		switch(token) {
+		case MAKEMEMBERSUCCESS:
+			makeMemberSuccess(response.getWriter(), model, userId);
+			break;
 		case MAKEMEMBERERROR:
 			makeMemberError(response.getWriter());
-			break;
-		case MAKEMEMBERSUCCESS:
-			makeMemberSuccess(response.getWriter());
 			break;
 		case MAKEMEMBERFAIL:
 			makeMemberFail(response.getWriter());
@@ -54,18 +55,9 @@ public class MakeMemberController {
 		}
 	}
 		
-	
 
-	private void makeMemberFail(PrintWriter out) {
-		out.println("<script>");
-		out.println("alert('동일한 아이디가 존재합니다')");
-		out.println("location.href='/noticeboard/makemember'");
-		out.println("</script>");
-		
-		
-	}
-
-	private void makeMemberSuccess(PrintWriter out) {
+	private void makeMemberSuccess(PrintWriter out, Model model, String userId) {
+		model.addAttribute("userId", userId);
 		out.println("<script>");
 		out.println("alert('회원가입 성공')");
 		out.println("location.href='/noticeboard/list'");
@@ -80,4 +72,14 @@ public class MakeMemberController {
 		out.println("</script>");
 		
 	}
+	
+	private void makeMemberFail(PrintWriter out) {
+		out.println("<script>");
+		out.println("alert('동일한 아이디가 존재합니다')");
+		out.println("location.href='/noticeboard/makemember'");
+		out.println("</script>");
+		
+		
+	}
+
 }
