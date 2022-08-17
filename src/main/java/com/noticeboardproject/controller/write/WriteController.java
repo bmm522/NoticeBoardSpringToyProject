@@ -36,7 +36,7 @@ public class WriteController extends HttpServlet{
 	}
 	
 	@RequestMapping("/noticeboard/writemove")
-	public void movePage(HttpServletResponse response) throws IOException {
+	private void movePage(HttpServletResponse response) throws IOException {
 		PrintWriter out = response.getWriter();
 		out.println("<script>");
 		out.println("alert('글이 생성되었습니다.')");

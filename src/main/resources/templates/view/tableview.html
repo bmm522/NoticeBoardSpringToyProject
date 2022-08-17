@@ -46,7 +46,7 @@
 			<a href="search?page=1&searchKeyword=null" class="btn btn-primary">목록</a>
 			
 			<span th:if="${#strings.equals(session.userId, view.writer_id)}">
-			<a href="/noticeboard/list" class="btn btn-primary">수정</a>
+			<a th:href="@{/noticeboard/modify/{id}(id = ${view.id})}" class="btn btn-primary">수정</a>
 			<a href="/noticeboard/list" class="btn btn-primary">삭제</a>
 			</span>
 			</div>
