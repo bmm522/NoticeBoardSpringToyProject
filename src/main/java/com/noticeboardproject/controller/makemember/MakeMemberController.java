@@ -39,49 +39,34 @@ public class MakeMemberController {
 		String userPhoneNum = request.getParameter("phoneNum");
 		String userEmail = request.getParameter("email");
 		checkMakeMember(makeMemberService.makeMemberCheck(boardMember,
-				userId,userPwd,userName,userPhoneNum,userEmail), response, model, userId);
+				userId,userPwd,userName,userPhoneNum,userEmail), response.getWriter(),model, userId);
 	}
 	
 
-	private void checkMakeMember(Token token, HttpServletResponse response, Model model, String userId) throws IOException {	
+	private void checkMakeMember(Token token, PrintWriter out, Model model, String userId) throws IOException {	
 		switch(token) {
 		case MAKEMEMBERSUCCESS:
-			makeMemberSuccess(response.getWriter(), model, userId);
+			model.addAttribute("userId", userId);
+			out.println("<script>");
+			out.println("alert('회원가입 성공')");
+			out.println("location.href='/noticeboard/list'");
+			out.println("</script>");
 			break;
 		case MAKEMEMBERERROR:
-			makeMemberError(response.getWriter());
+			out.println("<script>");
+			out.println("alert('입력을 안한 곳이 있습니다.')");
+			out.println("location.href='/noticeboard/makemember'");
+			out.println("</script>");
 			break;
 		case MAKEMEMBERFAIL:
-			makeMemberFail(response.getWriter());
+			out.println("<script>");
+			out.println("alert('동일한 아이디가 존재합니다')");
+			out.println("location.href='/noticeboard/makemember'");
+			out.println("</script>");
 			break;
 		}
 	}
 		
 
-	private void makeMemberSuccess(PrintWriter out, Model model, String userId) {
-		model.addAttribute("userId", userId);
-		out.println("<script>");
-		out.println("alert('회원가입 성공')");
-		out.println("location.href='/noticeboard/list'");
-		out.println("</script>");
-		
-	}
-
-	private void makeMemberError(PrintWriter out) {
-		out.println("<script>");
-		out.println("alert('입력을 안한 곳이 있습니다.')");
-		out.println("location.href='/noticeboard/makemember'");
-		out.println("</script>");
-		
-	}
-	
-	private void makeMemberFail(PrintWriter out) {
-		out.println("<script>");
-		out.println("alert('동일한 아이디가 존재합니다')");
-		out.println("location.href='/noticeboard/makemember'");
-		out.println("</script>");
-		
-		
-	}
 
 }
