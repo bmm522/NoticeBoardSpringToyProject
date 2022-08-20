@@ -56,8 +56,10 @@
 						</table>
 						
 					</div>
-				
 					
+					<th:block th:each = "page : ${#numbers.sequence(1, totalPage)}">
+						<a th:href="@{/noticeboard/list(page = ${page-1})}" th:text="${page}"></a>
+					</th:block>
 					
 					<a href="/noticeboard/write" class="btn btn-primary pull-right">글쓰기</a>
 				</div>
