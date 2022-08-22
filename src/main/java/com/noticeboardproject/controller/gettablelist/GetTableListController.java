@@ -20,9 +20,13 @@ public class GetTableListController {
 	
 	@GetMapping("/noticeboard/list")
 	public String getTable(Model model,
-			@PageableDefault(sort = "id", direction = Sort.Direction.DESC)Pageable pageable) {
-		Page<TableList> tableList = tableService.getTableList(pageable);
-		
+			@PageableDefault(sort = "id", direction = Sort.Direction.DESC)Pageable pageable, String searchKeyword) {
+		Page<TableList> tableList = null;
+		if(searchKeyword == null) {
+			tableList = tableService.getTableList(pageable);
+		} else {
+			tableList = tableService
+		}
 		int totalPage = tableList.getTotalPages()+1;
 		int nowPage = tableList.getPageable().getPageNumber();
 		System.out.println("totalPage : " + totalPage);

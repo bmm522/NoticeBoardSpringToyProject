@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.noticeboardproject.TableListRepository;
+import com.noticeboardproject.entity.BoardMember;
 import com.noticeboardproject.entity.TableList;
 
 @Service
@@ -19,6 +20,9 @@ public class TableService {
 		return tableListRepository.findAll(pageable);
 	}
 	
+	public Page<TableList> getTableSearchList(Pageable pageable, String searchKeyword){
+		return tableListRepository.findByTitleContaining(pageable, searchKeyword);
+	}
 	// 해당 id 글 불러오기
 	public TableList getTableView(Integer id) {
 		return tableListRepository.findById(id).get();
@@ -33,5 +37,7 @@ public class TableService {
 		tableListRepository.deleteById(id);
 		
 	}
+	
+	
 }
 
