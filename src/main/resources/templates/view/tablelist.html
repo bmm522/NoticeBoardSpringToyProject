@@ -20,7 +20,7 @@
 					<h2 class="heading-section">Table #01</h2>
 				</div>
 				<div>
-					<form method ="get" action = "search">
+					<form method ="get" th:action = "@{/noticeboard/list}">
 						<input type = "text" placeholder ="검색어 입력" name="searchKeyword">
 						<input type = "hidden" name = "page" value = "<%=currentPage%>">
 						<input type = "submit" value = "검색">

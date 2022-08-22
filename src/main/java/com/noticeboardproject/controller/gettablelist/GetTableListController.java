@@ -25,12 +25,11 @@ public class GetTableListController {
 		if(searchKeyword == null) {
 			tableList = tableService.getTableList(pageable);
 		} else {
-			tableList = tableService
+			tableList = tableService.getTableSearchList(pageable, searchKeyword);
 		}
-		int totalPage = tableList.getTotalPages()+1;
+		int totalPage = tableList.getTotalPages();
 		int nowPage = tableList.getPageable().getPageNumber();
-		System.out.println("totalPage : " + totalPage);
-		System.out.println("nowPage : " + nowPage);
+		
 		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("tableList",tableList);
