@@ -1,12 +1,13 @@
 package com.noticeboardproject.service.table;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.noticeboardproject.TableListRepository;
-import com.noticeboardproject.entity.BoardMember;
 import com.noticeboardproject.entity.TableList;
 
 @Service
@@ -27,9 +28,10 @@ public class TableService {
 	public TableList getTableView(Integer id) {
 		return tableListRepository.findById(id).get();
 	}
-	
-	public int updatePubView(Integer id) {
-		return tableListRepository.updatePub(id);
+	// 조회수 증가
+	@Transactional
+	public int updateHitView(Integer id) {
+		return tableListRepository.updateHit(id);
 	}
 	
 	

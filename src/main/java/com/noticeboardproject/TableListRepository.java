@@ -14,6 +14,6 @@ public interface TableListRepository extends JpaRepository<TableList,Integer>{
 	Page<TableList> findByTitleContaining(Pageable pageable, String searchKeyword);
 	
 	@Modifying
-	@Query("update TableList t set t.pub = t.pub + 1 where t.id = : id")
-	int updatePub(Integer id);
+	@Query("update TableList t set t.hit = t.hit + 1 where t.id = id")
+	int updateHit(Integer id);
 }
