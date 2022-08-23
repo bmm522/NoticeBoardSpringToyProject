@@ -22,15 +22,16 @@ public class GetTableListController {
 	public String getTable(Model model,
 			@PageableDefault(sort = "id", direction = Sort.Direction.DESC)Pageable pageable, String searchKeyword) {
 		Page<TableList> tableList = null;
+		
 		if(searchKeyword == null) {
 			tableList = tableService.getTableList(pageable);
 		} else {
 			tableList = tableService.getTableSearchList(pageable, searchKeyword);
 		}
 		int totalPage = tableList.getTotalPages();
-		int nowPage = tableList.getPageable().getPageNumber();
+
 		
-		model.addAttribute("nowPage", nowPage);
+
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("tableList",tableList);
 		return "view/tablelist";
@@ -38,3 +39,6 @@ public class GetTableListController {
 	
 	
 }
+
+//int nowPage = tableList.getPageable().getPageNumber();
+//model.addAttribute("nowPage", nowPage);
