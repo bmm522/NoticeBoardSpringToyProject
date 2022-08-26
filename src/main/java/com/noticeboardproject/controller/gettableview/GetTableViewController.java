@@ -17,7 +17,6 @@ public class GetTableViewController {
 	
 	@GetMapping("/noticeboard/view")
 	public String moveView(Model model, Integer id, HttpServletRequest request) {
-		
 		model.addAttribute("view", tableService.getTableView(id));
 		model.addAttribute("sessionUserId",request.getSession().getAttribute("userId"));
 		tableService.updateHitView(id);

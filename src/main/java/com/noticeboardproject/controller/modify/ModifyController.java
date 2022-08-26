@@ -28,7 +28,8 @@ public class ModifyController {
 	}
 	
 	@PostMapping("/noticeboard/modifyaction/{id}")
-	public void viewModifyAction(@PathVariable("id")Integer id, TableList tableList, HttpServletResponse response) throws Exception {
+	public void viewModifyAction(@PathVariable("id")Integer id, TableList tableList,
+			HttpServletResponse response) throws Exception {
 		TableList tableListTemp = tableService.getTableView(id);
 		tableListTemp.setTitle(tableList.getTitle());
 		tableListTemp.setContent(tableList.getContent());
