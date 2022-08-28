@@ -18,7 +18,7 @@ public class loginFailureHandler implements AuthenticationFailureHandler {
 										throws IOException, ServletException {
 		
 		System.out.println("exception : " + exception.getMessage());
-		response.sendRedirect("/login");
+		response.sendRedirect("/noticeboard/list");
 
 	}
 
