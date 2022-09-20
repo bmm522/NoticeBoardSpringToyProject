@@ -31,7 +31,7 @@ public class LoginController {
 	
 	
 	
-	@PostMapping("/noticeboard/loginaction")
+	@PostMapping("noticeboard/loginAction")
 	public void noticeBoardLoginAction(@ModelAttribute BoardMember boardmember, HttpServletResponse response,Model model) 
 			throws IOException {
 		switch(loginService.loginCheck(boardmember)) {
@@ -39,6 +39,8 @@ public class LoginController {
 			successLogin(response.getWriter(),model,boardmember.getUserId());
 			break;
 		case LOGINFAIL:
+			failLogin(response.getWriter());
+		default:
 			failLogin(response.getWriter());
 		}
 		
